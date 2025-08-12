@@ -41,7 +41,7 @@ public class StudentService {
     }
 
     @Transactional
-    public void updateName(Long studentId) {
+    public void updateName(Long  studentId) {
         Student student = studentRepository.findById(studentId).get();
         student.setName("Bunny");
         studentRepository.save(student);
