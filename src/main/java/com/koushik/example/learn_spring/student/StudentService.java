@@ -1,0 +1,50 @@
+package com.koushik.example.learn_spring.student;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class StudentService {
+
+    public final StudentRepository studentRepository;
+
+    @Autowired
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+    @GetMapping()
+    public List<Student> getStudents() {
+        return studentRepository.findAll();
+    }
+
+    public void addNewStudent(Student student) {
+        Optional<Student> studentByEmail = studentRepository.findStudentByEmail(student.getEmail());
+
+        if(studentByEmail.isPresent()) {
+            throw new IllegalStateException("email already exists");
+        }
+
+        studentRepository.save(student);
+    }
+
+    public void deleteStudent(Long studentId) {
+        boolean exists = studentRepository.existsById(studentId);
+        if(!exists) {
+            throw new IllegalStateException("student does not exists with id: " + studentId);
+        }
+        studentRepository.deleteById(studentId);
+    }
+
+    @Transactional
+    public void updateName(Long studentId) {
+        Student student = studentRepository.findById(studentId).get();
+        student.setName("Bunny");
+        studentRepository.save(student);
+    }
+
+}
