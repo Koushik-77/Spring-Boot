@@ -39,6 +39,8 @@ This repository documents my journey in understanding:
 
 
 <img width="700" height="929" alt="Screenshot 2025-08-10 101014" src="https://github.com/user-attachments/assets/af032173-f8df-48d3-b9fb-d4b3a184ecca" />
+<img width="700" height="630" alt="Screenshot 2025-08-10 101028" src="https://github.com/user-attachments/assets/8bdcf3dd-033e-4917-b71a-ec60fce3e701" />
+
 
 The repository includes diagrams to illustrate:
 
